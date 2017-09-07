@@ -1,19 +1,26 @@
-package activity2;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.WelcomeService;
 
 /**
  *
- * @author CPerera
+ * @author CPere
  */
-@WebServlet(name = "PageGenerator", urlPatterns = {"/pager"})
-public class PageGenerator extends HttpServlet {
+@WebServlet(name = "greeter", urlPatterns = {"/greeter"})
+public class greeter extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,45 +34,23 @@ public class PageGenerator extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PageGenerator</title>");
-            out.println("</head>");
+        
+        String nameEnterd = request.getParameter("userName");
+        WelcomeService ws = new WelcomeService();
+        String msg = ws.welcomeMessageGenerator(nameEnterd);
+        request.setAttribute("nameMsg", msg);
+        
+        // To send any data to the VIEW you must use this to forward the
+// request object, which contains the data, to the destination. The
+// destination can be a JSP or another Controller, but cannot be an html page.
 
-            out.println("<body>");
-            out.println("<style>");
+RequestDispatcher view =
+        request.getRequestDispatcher("/response.jsp");
+view.forward(request, response);
 
-            out.println("table {border-collapse: collapse; width: 50%; text-align: center;}");
-            out.println("table, td, th {border: 1px solid black; height: 40px;}");
-
-            out.println("</style>");
-            out.println("<h1 style=color:brown; text-align: center;>Student's Information</h1>");
-
-            out.println("<table id=\"table\" onclick=\"myFunction()\">");
-
-            for (int row = 1; row < 4; row++) {
-                out.println(" <tr>");
-                for (int col = 1; col < 4; col++) {
-                    out.println("<td> r" + row + "c" + col + "</td>");
-                }
-            }
-
-            out.println(" <tr>");
-
-            out.println("<table>");
-
-            out.println("<script>");
-            out.println("function myFunction() {");
-            out.println("document.getElementById(\"table\").style.backgroundColor = \"#E3EDB5\";}");
-            out.println("</script>");
-
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

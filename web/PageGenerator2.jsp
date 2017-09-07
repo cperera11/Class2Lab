@@ -9,53 +9,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>JSP table</title>
+
+        <style>
+            <%
+                out.println("table {border-collapse: collapse; width: 50%; text-align: center;}");
+                out.println("table, td, th {border: 1px solid black; height: 40px;}");
+
+            %>
+        </style>
+
+
     </head>
     <body>
-       
-        <%
-         out.println("<style>");
-            
-            out.println("table {border-collapse: collapse; width: 50%; text-align: center;}");
-            out.println("table, td, th {border: 1px solid black; height: 40px;}");
-            
-            out.println("</style>");
-            out.println("<h1 style=color:brown; text-align: center;>Student's Information</h1>");
 
-            out.println("<table id=\"table\" onclick=\"myFunction()\">");
-            
-            out.println(" <tr>");
-            out.println("<th>Firstname</th>");
-            out.println("<th>Lastname</th>");
-            out.println("<th>Age</th>");
-            out.println("</tr>");
-            
-            out.println("<tr>");
-            out.println("<td>Sam</td>");
-            out.println("<td>Williams</td>");
-            out.println("<td>21</td>");
-            out.println("</tr>");
-            
-            out.println("<tr>");
-            out.println("<td>Emma</td>");
-            out.println("<td>Johnson</td>");
-            out.println("<td>27</td>");
-            out.println("</tr>");
-            
-            out.println("<tr>");
-            out.println("<td>Jenna</td>");
-            out.println("<td>Smith</td>");
-            out.println("<td>18</td>");
-            out.println("</tr>");
-            
-            out.println("<table>");
+        <h1 style=color:brown; text-align: center> Student's Information</h1>
+        <table id="table" onclick="myFunction()">
+            <%            for (int row = 1; row < 4; row++) {
+                    out.println(" <tr>");
+                    for (int col = 1; col < 4; col++) {
+                        out.println("<td> r" + row + "c" + col + "</td>");
+                    }
+                }
 
-            out.println("<script>");
-            out.println("function myFunction() {");
-            out.println("document.getElementById(\"table\").style.backgroundColor = \"#E3EDB5\";}");
-            out.println("</script>");
-            
-        %>
-        
-    </body>
-</html>
+            %>
+            <table>
+
+                <script>
+                    function myFunction() {
+                        document.getElementById("table").style.backgroundColor = "#E3EDB5"
+                    }
+                    ;
+                </script>
+            </body>
+      </html>

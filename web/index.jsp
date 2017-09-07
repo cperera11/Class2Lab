@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h2>Hello User!</h2>
+        <p><a href ="welcome.html"> Name Entry Form</a> </p>
     </body>
 </html>
