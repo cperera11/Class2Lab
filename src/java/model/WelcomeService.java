@@ -9,8 +9,8 @@ import java.util.Date;
  * @author CPerera
  */
 public class WelcomeService {
-    private Calendar calendar = Calendar.getInstance ();
-    Date CurentDate = calendar.getTime();
+    private final Calendar calendar = Calendar.getInstance ();
+    private final Date CurentDate = calendar.getTime();
 
   
     private final String greetingGenerator(){
